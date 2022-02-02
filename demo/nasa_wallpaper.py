@@ -40,7 +40,12 @@ parser.add_argument(
 parser.add_argument(
     "-o", "--output_file",
     nargs="?", default='/tmp/autowallpaper.out',
-    help="path where code outputs are logged, default is '/tmp/autowallpaper.out'"
+    help="path where code outputs are stored, default is '/tmp/autowallpaper.out'"
+)
+parser.add_argument(
+    "-l", "--log_file",
+    nargs="?", default='/tmp/autowallpaper.log',
+    help="path where stuff can be logged, default is '/tmp/autowallpaper.log'"
 )
 parser.add_argument(
     "-e", "--error_file",
@@ -50,7 +55,7 @@ parser.add_argument(
 parser.add_argument(
     "-x", "--explanations",
     nargs="?", default=False,
-    help="to log explanations in the log file, default is '/tmp/autowallpaper.err'"
+    help="to log explanations in the log file, default is '/tmp/autowallpaper.out'"
 )
 
 

@@ -86,8 +86,11 @@ class AutoWallpaper(Daemon):
             Path to the file that will store output.
             Default is "/tmp/autowallpaper.out".
         error_file : str, optional
-            Path to the file that contains error logs.
+            Path to the file that will contain errors.
             Default is "/tmp/autowallpaper.err".
+        log_file : str, optional
+            Path to the file that will contain logs.
+            Default is "/tmp/autowallpaper.log".
     """
     def __init__(
             self,
@@ -95,7 +98,8 @@ class AutoWallpaper(Daemon):
             image_dir: str = "/tmp/",
             pidfile: str = "/tmp/autowallpaper.pid",
             output_file: str = "/tmp/autowallpaper.out",
-            error_file: str = "/tmp/autowallpaper.err"
+            error_file: str = "/tmp/autowallpaper.err",
+            log_file: str = "/tmp/autowallpaper.log"
         ):
         self._os = sys.platform
         self.source_function = source_function
@@ -109,7 +113,7 @@ class AutoWallpaper(Daemon):
         self.image_dir = image_dir
         self._debug = "DEBUG"
         self._error = "ERROR"
-        super().__init__(pidfile, output_file, error_file)
+        super().__init__(pidfile, output_file, error_file, log_file)
 
     def source_image(self, *args, **kwargs) -> Union[str, None]:
         """
@@ -205,6 +209,7 @@ class AutoWallpaper(Daemon):
             self.log("Running...", self._debug)
 
             # Deletes older images
+            # TODO : Change this to not delete local images
             if path.isfile(fetched_image):
                 remove(fetched_image)
 
