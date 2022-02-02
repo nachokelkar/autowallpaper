@@ -1,0 +1,66 @@
+Metadata-Version: 2.1
+Name: wallpyper-nachokelkar
+Version: 0.0.4
+Summary: Package that helps you create your own wallpaper changing service
+Home-page: https://github.com/pskelkar74/wallpyper
+Author: Pranav Kelkar
+Author-email: pskelkar74@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/pskelkar74/wallpyper/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# wallpyper
+
+A python module that allows you to create your own wallpaper setting service.
+
+## Basic Usage
+
+1. Pull the repository, create a new Python file.
+1. In the file, write your own function (let's call it `my_image_function()`) that returns the URL of the image to be set as wallpaper. This function will be called every 24 hours, so each time it is called, it should ideally generate a new image.
+2. Create an object of `Wallpyper` with your function as the argument.
+3. Run it with
+    ```python
+    from src.wallpyper import WallpyperDaemon
+
+    wallyper_daemon = WallpyperDaemon(
+        my_image_function,
+        # other arguments
+    )
+
+    wallpyper_daemon.start()   # Starts the daemon
+    wallpyper_daemon.restart() # Restarts the daemon
+    wallpyper_daemon.stop()    # Stops the daemon
+    ```
+4. _(OPTIONAL)_ To set your own scheduler, you can extend class `Wallpyper` and override `run()`
+
+You can change more parameters, such as where the image is stored, using other arguments to `Wallpyper`.
+
+## Demo - NASA APOD
+
+A working demo implementation is available in `demo/nasa_wallpaper.py`. This changes the wallpaper every 24h to the image featured on [NASA's Astronomy Picture of the Day](https://apod.nasa.gov/).
+
+### Usage
+1. Get an API key from [the NASA API website](https://api.nasa.gov). Save it in a file or just copy it.
+2. Move `demo/nasa_wallpaper.py` in the parent directory (so the imports work fine).
+3. Run using\
+`$ python nasa_wallpaper.py -k [KEY | PATH_TO_KEYFILE] start|stop|restart`
+4. Use `$ python nasa_wallpaper.py -h` to see additional options
+
+
+
+---
+
+## TODOs
+
+- Add option to save all images instead of only the latest one
+- Make logging optional
+- Change paths for Windows
+- Test Windows and Linux environments
+- Add support for more environments
+- ???
+

@@ -1,0 +1,1 @@
+from .autowallpaper import AutoWallpaper

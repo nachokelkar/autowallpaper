@@ -1,0 +1,11 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/wallpyper/__init__.py
+src/wallpyper/daemon.py
+src/wallpyper/wallpyper.py
+src/wallpyper_nachokelkar.egg-info/PKG-INFO
+src/wallpyper_nachokelkar.egg-info/SOURCES.txt
+src/wallpyper_nachokelkar.egg-info/dependency_links.txt
+src/wallpyper_nachokelkar.egg-info/top_level.txt
